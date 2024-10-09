@@ -1,9 +1,10 @@
 "use client";
 
+import CategoryLists from "@/samezone/ui/categoryLists";
 import EvaluationScoreStar from "@/samezone/ui/evaluationScoreStar";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 export default function Page() {
@@ -13,7 +14,6 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   const { products } = useParams();
-
   useEffect(() => {
     async function getData(query) {
       try {
@@ -45,7 +45,7 @@ export default function Page() {
     <div>
       <div>
         <h1 className="py-8 text-3xl font-bold text-primary-color">
-          ELECTRONICS
+          {data[0].category.toUpperCase()}
         </h1>
       </div>
 
@@ -107,8 +107,8 @@ function Card({ data, filteredData }) {
 }
 
 function Filter({ maxPrice, setFilteredData, filteredData, data }) {
-  const [priceRange, setPriceRange] = useState(null);
-  const [evaluationScore, setEvaluationScore] = useState(null);
+  const [priceRange, setPriceRange] = useState("");
+  const [evaluationScore, setEvaluationScore] = useState("");
 
   useEffect(() => {
     if (priceRange || evaluationScore) {
@@ -127,25 +127,27 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
       setFilteredData(null);
     }
   }, [data, evaluationScore, priceRange, setFilteredData]);
-  console.log(priceRange);
   return (
     <div className="sticky top-[20px]">
       <div className="w-[250px] rounded-lg border-2 border-black bg-secondary-color text-middle-color">
-        <ElectronicsCategory />
+        <CategoryLists category={data[0].category} />
         <div className="border-b-2 border-black py-3">
           <div className="flex">
             <p className="inline pb-1 pl-2 font-semibold text-text-color">
               Price Range
             </p>
-            <button
-              onClick={() => setPriceRange(null)}
-              className="ml-auto mr-2 font-semibold text-red-600">
-              Clear
-            </button>
+            {priceRange && (
+              <button
+                onClick={() => setPriceRange("")}
+                className="ml-auto mr-2 font-semibold text-red-600">
+                Clear
+              </button>
+            )}
           </div>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={priceRange && priceRange[0] === "0"}
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`0-${Math.trunc(maxPrice / 5)}`}
@@ -156,7 +158,10 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           </label>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={
+                priceRange && priceRange[0] === `${Math.trunc(maxPrice / 5)}`
+              }
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`${Math.trunc(maxPrice / 5)}-${Math.trunc(maxPrice / 4)}`}
@@ -167,7 +172,10 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           </label>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={
+                priceRange && priceRange[0] === `${Math.trunc(maxPrice / 4)}`
+              }
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`${Math.trunc(maxPrice / 4)}-${Math.trunc(maxPrice / 3)}`}
@@ -178,7 +186,10 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           </label>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={
+                priceRange && priceRange[0] === `${Math.trunc(maxPrice / 3)}`
+              }
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`${Math.trunc(maxPrice / 3)}-${Math.trunc(maxPrice / 2)}`}
@@ -189,7 +200,10 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           </label>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={
+                priceRange && priceRange[0] === `${Math.trunc(maxPrice / 2)}`
+              }
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`${Math.trunc(maxPrice / 2)}-${Math.trunc(maxPrice / 1)}`}
@@ -200,7 +214,10 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           </label>
           <label className="flex items-center gap-1 pl-4">
             <input
-              onClick={(e) => setPriceRange(e.target.value.split("-"))}
+              checked={
+                priceRange && priceRange[0] === `${Math.trunc(maxPrice / 1)}`
+              }
+              onChange={(e) => setPriceRange(e.target.value.split("-"))}
               type="radio"
               name="price"
               value={`${Math.trunc(maxPrice / 1)}-+`}
@@ -213,20 +230,23 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
             <p className="inline pb-1 pl-2 font-semibold text-text-color">
               Evaluation Score
             </p>
-            <button
-              onClick={() => setEvaluationScore(null)}
-              className="ml-auto mr-2 font-semibold text-red-600">
-              Clear
-            </button>
+            {evaluationScore && (
+              <button
+                onClick={() => setEvaluationScore("")}
+                className="ml-auto mr-2 font-semibold text-red-600">
+                Clear
+              </button>
+            )}
           </div>
 
           <label>
             <div className="flex items-center gap-2 pl-4">
               <input
+                checked={evaluationScore == "4"}
                 type="radio"
                 name="star"
                 value="4"
-                onClick={(e) => setEvaluationScore(e.target.value)}
+                onChange={(e) => setEvaluationScore(e.target.value)}
               />
               <FaStar /> <span>4 Star And Above</span>
             </div>
@@ -234,10 +254,11 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           <label>
             <div className="flex items-center gap-2 pl-4">
               <input
+                checked={evaluationScore == "3"}
                 type="radio"
                 name="star"
                 value="3"
-                onClick={(e) => setEvaluationScore(e.target.value)}
+                onChange={(e) => setEvaluationScore(e.target.value)}
               />
               <FaStar /> <span>3 Star And Above</span>
             </div>
@@ -245,10 +266,11 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           <label>
             <div className="flex items-center gap-2 pl-4">
               <input
+                checked={evaluationScore == "2"}
                 type="radio"
                 name="star"
                 value="2"
-                onClick={(e) => setEvaluationScore(e.target.value)}
+                onChange={(e) => setEvaluationScore(e.target.value)}
               />
               <FaStar /> <span>2 Star And Above</span>
             </div>
@@ -256,11 +278,11 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
           <label>
             <div className="flex items-center gap-2 pl-4">
               <input
-                checked={(!evaluationScore)}
+                checked={evaluationScore == "1"}
                 type="radio"
                 name="star"
                 value="1"
-                onClick={(e) => setEvaluationScore(e.target.value)}
+                onChange={(e) => setEvaluationScore(e.target.value)}
               />
               <FaStar /> <span>1 Star And Above</span>
             </div>
@@ -270,122 +292,3 @@ function Filter({ maxPrice, setFilteredData, filteredData, data }) {
     </div>
   );
 }
-
-function ElectronicsCategory() {
-  const [computer, setComputer] = useState(false);
-  const [printer, setPrinter] = useState(false);
-  const [data, setData] = useState(false);
-  const [component, setComponent] = useState(false);
-  const [pripherals, setPripherals] = useState(false);
-
-  return (
-    <div className="border-b-2 border-black py-3">
-      <div className="pb-1 pl-2 text-xl font-bold text-text-color">
-        Electronics
-      </div>
-      <div
-        className="pl-2 font-semibold"
-        onClick={() => setComputer((state) => !state)}>
-        Computers+-
-      </div>
-      <div className={`${computer ? "block" : "hidden"} pl-4`}>
-        Desktop Computer
-      </div>
-      <div className={`${computer ? "block" : "hidden"} pl-4`}>
-        Laptop Computer
-      </div>
-      <div className={`${computer ? "block" : "hidden"} pl-4`}>
-        Monitor PC (All-in-One)
-      </div>
-      <div
-        className={`${computer ? "block" : "hidden"} w-full overflow-clip break-words px-4 pl-4`}>
-        Mini
-        Deddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsdafssadsddsktop
-      </div>
-      <div className={`${computer ? "block" : "hidden"} pl-4`}>Servers</div>
-
-      <div
-        className="pl-2 font-semibold"
-        onClick={() => setPrinter((state) => !state)}>
-        Printer+-
-      </div>
-
-      <div className={`${printer ? "block" : "hidden"} pl-4`}>
-        Laser Printers
-      </div>
-      <div className={`${printer ? "block" : "hidden"} pl-4`}>
-        Inkjet Printers
-      </div>
-      <div className={`${printer ? "block" : "hidden"} pl-4`}>
-        Tank Printers
-      </div>
-      <div className={`${printer ? "block" : "hidden"} pl-4`}>
-        Dot Matrix Printers
-      </div>
-      <div className={`${printer ? "block" : "hidden"} pl-4`}>Scanners</div>
-
-      <div
-        className="pl-2 font-semibold"
-        onClick={() => setData((state) => !state)}>
-        Data Storage+-
-      </div>
-
-      <div className={`${data ? "block" : "hidden"} pl-4`}>USB Memory</div>
-      <div className={`${data ? "block" : "hidden"} pl-4`}>Portable Disk</div>
-      <div className={`${data ? "block" : "hidden"} pl-4`}>Portable SSD</div>
-      <div className={`${data ? "block" : "hidden"} pl-4`}>MemoryCards</div>
-
-      <div
-        className="pl-2 font-semibold"
-        onClick={() => setComponent((state) => !state)}>
-        Computer Components+-
-      </div>
-
-      <div className={`${component ? "block" : "hidden"} pl-4`}>
-        Motherboards
-      </div>
-      <div className={`${component ? "block" : "hidden"} pl-4`}>
-        Graphics Cards
-      </div>
-      <div className={`${component ? "block" : "hidden"} pl-4`}>Memory</div>
-      <div className={`${component ? "block" : "hidden"} pl-4`}>Processors</div>
-      <div className={`${component ? "block" : "hidden"} pl-4`}>Hard Disks</div>
-
-      <div
-        className="pl-2 font-semibold"
-        onClick={() => setPripherals((state) => !state)}>
-        Pripherals+-
-      </div>
-
-      <div className={`${pripherals ? "block" : "hidden"} pl-4`}>Monitors</div>
-      <div className={`${pripherals ? "block" : "hidden"} pl-4`}>Mouse</div>
-      <div className={`${pripherals ? "block" : "hidden"} pl-4`}>Keyboard</div>
-      <div className={`${pripherals ? "block" : "hidden"} pl-4`}>
-        Power Supplies
-      </div>
-      <div className={`${pripherals ? "block" : "hidden"} pl-4`}>
-        Electronic Dictionaries
-      </div>
-    </div>
-  );
-}
-
-// function handlePriceRange(e) {
-//   let price = e.split("-");
-//   console.log(price[1]);
-
-//   let filteredDataler = data.filter((filteredData) => {
-//     if (price[1] === undefined) {
-//       return filteredData.price >= price[0];
-//     }
-//     return filteredData.price >= price[0] && filteredData.price <= price[1];
-//   });
-//   setFilteredData(filteredDataler);
-// }
-
-// function handleRating(e) {
-//   let filteredDataler = data.filter(
-//     (filteredData) => filteredData.rating.rate >= e,
-//   );
-//   setFilteredData(filteredDataler);
-// }

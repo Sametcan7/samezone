@@ -59,20 +59,24 @@ export default function Header() {
             </div>
           </div>
           <div className="mt-4 flex justify-center gap-16 rounded-xl bg-middle-color py-2 font-semibold">
-            <Link className="font-bold text-primary-color" href="electronics">
+            <Link
+              className="font-bold text-primary-color"
+              href="/category/electronics">
               Electronics
             </Link>
-            <Link className="font-bold text-primary-color" href="jewelery">
+            <Link
+              className="font-bold text-primary-color"
+              href="/category/jewelery">
               Jewelery
             </Link>
             <Link
               className="font-bold text-primary-color"
-              href="men's clothing">
+              href="/category/men's clothing">
               Men&apos;s Clothing
             </Link>
             <Link
               className="font-bold text-primary-color"
-              href="women's clothing">
+              href="/category/women's clothing">
               Women&apos;s Clothing
             </Link>
           </div>
