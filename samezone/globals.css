@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #222831;
+  --secondary-color: #31363f;
+  --middle-color: #76abae;
+  --text-color: #eeeeee;
+}
+
+.react-multi-carousel-track {
+  align-items: center;
+}
