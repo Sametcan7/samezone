@@ -29,31 +29,31 @@ export default function Info2() {
           Beachwear
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Kids' Shoes
+          Kids&apos; Shoes
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Women's Clothes
+          Women&apos;s Clothes
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Men's Shoes
+          Men&apos;s Shoes
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Women's Shoes
+          Women&apos;s Shoes
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
           Smart Home
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Men's Underwear & Sleepwear
+          Men&apos;s Underwear & Sleepwear
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
           Electronics
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Women's Clothing
+          Women&apos;s Clothing
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Kids' Fashion
+          Kids&apos; Fashion
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
           Sports & Outdoors
@@ -77,7 +77,7 @@ export default function Info2() {
           Pet Supplies
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
-          Women's Curve
+          Women&apos;s Curve
         </span>
         <span className="mx-4 flex cursor-pointer items-center rounded-xl border-2 border-black bg-zinc-200 px-2 py-2 font-bold">
           Toys & Games

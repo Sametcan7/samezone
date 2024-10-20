@@ -11,9 +11,9 @@ export default function EvaluationScoreStar({ rating, count }) {
         <FaStar key={index} style={{ color: "yellow" }} />
       ))}
       {half && <FaStarHalf style={{ color: "yellow" }} />}
-      <p className="pl-2 ">
-        <span className="text-yellow-400 font-semibold">{rating}</span> /{" "}
-        <span  >({count})</span>
+      <p className="pl-2">
+        <span className="font-semibold text-yellow-400">{rating}</span> /{" "}
+        <span>({count})</span>
       </p>
     </div>
   );
