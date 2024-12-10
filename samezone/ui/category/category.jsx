@@ -4,45 +4,47 @@ import { useEffect, useState } from "react";
 import Filter from "./filter";
 import Card from "./card";
 import Loading from "./loading";
+import { useGetCategoryQuery } from "@/samezone/lib/redux/api/apiSlice";
 
 export default function Category() {
-  const [data, setData] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
+  // const [data, setData] = useState(null);
+  // const [maxPrice, setMaxPrice] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { products } = useParams();
 
-  useEffect(() => {
-    async function getData(query) {
-      try {
-        const response = await fetch(
-          `https://fakestoreapi.com/products/category/${query}`,
-        );
+  const { data, isFetching } = useGetCategoryQuery(products);
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+  // useEffect(() => {
+  //   async function getData(query) {
+  //     try {
+  //       const response = await fetch(
+  //         `https://fakestoreapi.com/products/category/${query}`,
+  //       );
 
-        const productJson = await response.json();
-        setData(productJson);
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
 
-        const price = productJson.reduce((acc, curr) =>
-          acc.price > curr.price ? acc : curr,
-        );
+  //       const productJson = await response.json();
+  //       setData(productJson);
 
-        setMaxPrice(price.price);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getData(products);
-  }, [products]);
+  //       const price = productJson.reduce((acc, curr) =>
+  //         acc.price > curr.price ? acc : curr,
+  //       );
+
+  //       setMaxPrice(price.price);
+  //     } catch (err) {
+  //       setError(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   getData(products);
+  // }, [products]);
+
   return (
     <div>
-      {loading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <>
@@ -54,7 +56,7 @@ export default function Category() {
 
           <div className="my-8 flex h-auto gap-4">
             <Filter
-              maxPrice={maxPrice}
+
               setFilteredData={setFilteredData}
               filteredData={filteredData}
               data={data}

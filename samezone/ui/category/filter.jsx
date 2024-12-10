@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import CategoryLists from "./categoryLists";
 import { FaStar } from "react-icons/fa";
 
-export default function Filter({
-  maxPrice,
-  setFilteredData,
-  filteredData,
-  data,
-}) {
+export default function Filter({ setFilteredData, filteredData, data }) {
   const [priceRange, setPriceRange] = useState("");
   const [evaluationScore, setEvaluationScore] = useState("");
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      const maxPrice = data.reduce((acc, curr) =>
+        acc.price > curr.price ? acc : curr,
+      ).price;
+      setMaxPrice(maxPrice);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (priceRange || evaluationScore) {

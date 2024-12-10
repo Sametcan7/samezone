@@ -8,19 +8,14 @@ import { Allerta_Stencil } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useGetProductsQuery } from "../lib/redux/api/apiSlice";
 
 const allerta_stencil = Allerta_Stencil({ subsets: ["latin"], weight: "400" });
 
 export default function Header() {
-  const [data, setData] = useState(null);
   const [result, setResult] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((res) => res.json())
-      .then((json) => setData(json));
-  }, []);
+  const { data } = useGetProductsQuery();
   const divRef = useRef();
 
   function HandleClick(e) {

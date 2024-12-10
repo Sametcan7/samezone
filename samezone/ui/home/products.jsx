@@ -1,22 +1,12 @@
 "use client";
 
+import { useGetCategoryQuery } from "@/samezone/lib/redux/api/apiSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
 
 function Products() {
-  const [electronics, setElectronics] = useState(null);
-  const [jewelery, setJewelery] = useState(null);
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/category/electronics")
-      .then((res) => res.json())
-      .then((json) => json.slice(0, 2))
-      .then((arr) => setElectronics(arr));
-    fetch("https://fakestoreapi.com/products/category/jewelery")
-      .then((res) => res.json())
-      .then((json) => json.slice(0, 2))
-      .then((arr) => setJewelery(arr));
-  }, []);
+  const { data: electronics } = useGetCategoryQuery("electronics");
+  const { data: jewelery } = useGetCategoryQuery("jewelery");
 
   return (
     <div className="bg- zinc-400 my-4 rounded-2xl">
@@ -31,7 +21,7 @@ function Products() {
 
           <div className="flex flex-wrap justify-center gap-2">
             {electronics
-              ? electronics.map((electronic) => (
+              ? electronics?.slice(0, 2).map((electronic) => (
                   <div
                     key={electronic.id}
                     className="w-[300px] rounded-xl border-2 border-black bg-middle-color p-2">
@@ -58,7 +48,7 @@ function Products() {
           <h3 className="my-2 text-2xl font-bold text-text-color">Jewelery</h3>
           <div className="flex flex-wrap justify-center gap-2">
             {jewelery
-              ? jewelery.map((jewel) => (
+              ? jewelery.slice(0, 2).map((jewel) => (
                   <div
                     key={jewel.id}
                     className="w-[300px] rounded-xl border-2 border-black bg-middle-color p-2">

@@ -1,31 +1,19 @@
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import EvaluationScoreStar from "../ui/evaluationScoreStar";
 import Image from "next/image";
+import { useGetProductQuery } from "../lib/redux/api/apiSlice";
 
 export default function Product() {
-  const [product, setProduct] = useState(null);
-
   const { id } = useParams();
-
-  useEffect(() => {
-    async function bringProduct() {
-      let res = await fetch(`https://fakestoreapi.com/products/${id}`);
-      let resJson = await res.json();
-      setProduct(resJson);
-    }
-    bringProduct();
-  }, [id]);
-
+  const { data: product, isFetching } = useGetProductQuery(id);
+  
   return (
     <div>
-      {!product ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <div>
-          <h2 className="my-8 text-center text-2xl font-bold">
-            {product.category.toUpperCase()}
-          </h2>
+          <h2 className="my-8 text-center text-2xl font-bold"></h2>
           <div className="my-8 flex justify-evenly gap-4 rounded-lg bg-secondary-color p-3 text-text-color">
             <div className="w-[40%] shrink-0">
               <Image

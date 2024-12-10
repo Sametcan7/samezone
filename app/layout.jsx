@@ -1,6 +1,7 @@
 import Header from "@/samezone/ui/header";
 import "../samezone/globals.css";
 import Footer from "@/samezone/ui/footer";
+import StoreProvider from "./storeProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,14 +10,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="bg-gray-400">
-        <Header />
-        <div className="max-w-[1600px] mx-auto">
-          <main>{children}</main>
-        </div>
-        <Footer />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className="bg-gray-400">
+          <Header />
+          <div className="mx-auto max-w-[1600px]">
+            <main>{children}</main>
+          </div>
+          <Footer />
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

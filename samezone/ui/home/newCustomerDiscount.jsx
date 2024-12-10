@@ -6,17 +6,13 @@ import { PiArrowBendLeftDownBold } from "react-icons/pi";
 import { ArrowIconsLeft, ArrowIconsRight } from "../../lib/icons/arrowIcons";
 import Image from "next/image";
 import Link from "next/link";
+import { useGetProductsQuery } from "@/samezone/lib/redux/api/apiSlice";
 
 export default function NewCustomerDiscount() {
-  const [data, setData] = useState(null);
   const divRef = useRef(null);
   const imgRef = useRef(null);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+  const { data } = useGetProductsQuery();
 
   const handleL = () => {
     if (divRef.current) {
