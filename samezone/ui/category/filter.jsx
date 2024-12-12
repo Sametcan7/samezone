@@ -34,8 +34,8 @@ export default function Filter({ setFilteredData, filteredData, data }) {
     }
   }, [data, evaluationScore, priceRange, setFilteredData]);
   return (
-    <div className="sticky top-[20px]">
-      <div className="w-[250px] rounded-lg border-2 border-black bg-secondary-color text-middle-color">
+    <div className="md:sticky md:top-[20px]">
+      <div className="w-full rounded-lg border-2 border-black bg-secondary-color text-middle-color md:w-[250px]">
         <CategoryLists category={data[0].category} />
         <div className="border-b-2 border-black py-3">
           <div className="flex">

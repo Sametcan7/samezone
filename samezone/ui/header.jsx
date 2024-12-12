@@ -21,7 +21,7 @@ export default function Header() {
   const divRef = useRef();
 
   const allCart = useAppSelector(selectAllCart);
-  console.log(allCart);
+
   function HandleClick(e) {
     if (!divRef.current.contains(e.target)) setIsOpen(false);
   }
@@ -56,13 +56,13 @@ export default function Header() {
     <header className="bg-primary-color text-text-color">
       <div>
         <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-4 py-4">
-          <div className="flex h-10 w-full items-center justify-between gap-8">
+          <div className="flex w-full flex-col items-center justify-between gap-4 md:flex-row lg:gap-8">
             <div className={`${allerta_stencil.className} text-4xl lowercase`}>
               <Link href="/">SAMEZONE</Link>
             </div>
-            <div className="h-full flex-1">
-              <form className="relative h-full px-2">
-                <div ref={divRef} className="relative h-full w-full">
+            <div className="flex-1 max-md:w-full">
+              <form className="relative flex items-center px-2">
+                <div ref={divRef} className="relative h-10 w-full">
                   <input
                     onClick={() => setIsOpen(true)}
                     onChange={(e) => handleSearch(e)}
@@ -142,7 +142,7 @@ export default function Header() {
               </IconContext.Provider>
             </div>
           </div>
-          <div className="mt-4 flex justify-center gap-16 rounded-xl bg-middle-color py-2 font-semibold">
+          <div className="mt-4 flex justify-center rounded-xl bg-middle-color py-2 font-semibold max-md:flex-wrap max-md:justify-around md:gap-16">
             <Link
               className="font-bold text-primary-color"
               href="/category/electronics">
@@ -164,7 +164,7 @@ export default function Header() {
               Women&apos;s Clothing
             </Link>
           </div>
-          <div className="mt-4 flex justify-center gap-4 rounded-lg border-2 border-black bg-secondary-color py-4 font-semibold">
+          <div className="mt-4 flex justify-center gap-4 rounded-lg border-2 border-black bg-secondary-color py-4 font-semibold max-md:flex-wrap max-md:gap-8">
             <p className="relative">
               Mother & Child
               <span className="absolute left-[-15px] top-[-5px] inline-block -rotate-45 rounded-3xl border-2 border-red-700 px-1 text-center text-xs font-bold leading-tight text-red-700 opacity-80">

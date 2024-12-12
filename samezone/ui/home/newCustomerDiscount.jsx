@@ -7,6 +7,7 @@ import { ArrowIconsLeft, ArrowIconsRight } from "../../lib/icons/arrowIcons";
 import Image from "next/image";
 import Link from "next/link";
 import { useGetProductsQuery } from "@/samezone/lib/redux/api/apiSlice";
+import AddToCartButton from "../category/addToCartButton";
 
 export default function NewCustomerDiscount() {
   const divRef = useRef(null);
@@ -26,8 +27,8 @@ export default function NewCustomerDiscount() {
   };
 
   return (
-    <div className="mt-10 flex w-full rounded-lg bg-primary-color text-text-color">
-      <div className="flex w-[30%] flex-col justify-between p-6">
+    <div className="mt-10 flex w-full rounded-lg bg-primary-color text-text-color max-lg:flex-col">
+      <div className="flex flex-col justify-between p-2 max-lg:gap-4 lg:w-[30%] lg:p-6">
         <div>
           <p className="text-2xl">New shopper exclusive</p>
           <p className="text-xl">First order only</p>
@@ -37,7 +38,7 @@ export default function NewCustomerDiscount() {
           <p className="text-2xl">Welcome deal</p>
         </div>
       </div>
-      <div className="relative w-[70%]">
+      <div className="relative lg:w-[70%]">
         <button
           onClick={() => handleL()}
           className="absolute left-[-30px] top-1/2 translate-y-[-50%] rounded-full bg-gray-300 bg-opacity-10 hover:bg-opacity-50">
@@ -46,10 +47,13 @@ export default function NewCustomerDiscount() {
         <div ref={divRef} className="flex overflow-x-hidden py-2">
           {data
             ? data.map((data) => (
-                <div key={data.id} ref={imgRef} className="w-[25%] shrink-0">
+                <div
+                  key={data.id}
+                  ref={imgRef}
+                  className="w-[50%] shrink-0 sm:w-[33.33%] lg:w-[25%]">
                   <div className="mx-2">
-                    <div className="rounded-lg bg-slate-100 p-2">
-                      <div>
+                    <div className="group rounded-lg bg-slate-100 p-2">
+                      <div className="relative">
                         <Link href={`product/${data.id}`}>
                           <Image
                             className="box-content aspect-square rounded-lg pb-2"
@@ -59,8 +63,11 @@ export default function NewCustomerDiscount() {
                             alt=""
                           />
                         </Link>
+                        <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100">
+                          <AddToCartButton product={data} />
+                        </div>
                       </div>
-                      <div className="inline-block rounded-2xl border-2 border-black bg-middle-color px-1 py-2">
+                      <div className="inline-block rounded-2xl border-2 border-black bg-middle-color px-0.5 py-1">
                         <p className="flex flex-row items-center">
                           <IconContext.Provider
                             value={{

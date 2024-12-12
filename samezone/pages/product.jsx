@@ -17,8 +17,8 @@ export default function Product() {
       ) : (
         <div>
           <h2 className="my-8 text-center text-2xl font-bold"></h2>
-          <div className="my-8 flex justify-evenly gap-4 rounded-lg bg-secondary-color p-3 text-text-color">
-            <div className="w-[40%] shrink-0">
+          <div className="my-8 flex justify-evenly gap-4 rounded-lg bg-secondary-color p-3 text-text-color max-lg:flex-col">
+            <div className="w-[40%] shrink-0 max-lg:mx-auto">
               <Image
                 className="mx-auto aspect-square rounded-lg"
                 src={product.image}
@@ -45,7 +45,7 @@ export default function Product() {
 
               <button
                 onClick={() => dispatch(addProduct(product))}
-                className="mt-8 rounded-xl bg-middle-color px-4 py-3 text-3xl font-bold text-text-color">
+                className="mt-8 rounded-xl bg-middle-color px-4 py-3 text-3xl font-bold text-text-color transition-all duration-300 ease-in-out hover:bg-primary-color active:text-middle-color max-lg:w-full">
                 Add To Cart
               </button>
             </div>
@@ -62,8 +62,8 @@ function Loading() {
       <div className="my-12 text-center">
         <p className="mx-auto inline rounded-lg bg-slate-500 px-40 py-2"></p>
       </div>
-      <div className="my-8 flex justify-evenly gap-4 rounded-lg bg-secondary-color p-3">
-        <div className="w-[40%] shrink-0 animate-pulse">
+      <div className="my-8 flex justify-evenly gap-4 rounded-lg bg-secondary-color p-3 max-lg:flex-col">
+        <div className="w-[40%] shrink-0 animate-pulse max-lg:mx-auto">
           <div className="mx-auto aspect-square w-[80%] rounded-lg bg-slate-500 max-2xl:w-[100%]"></div>
         </div>
         <div className="w-[60%] animate-pulse">
@@ -81,7 +81,7 @@ function Loading() {
             <p className="mb-4 mt-2 rounded-xl bg-slate-500 py-4"></p>
           </div>
           <div className="mt-8">
-            <p className="inline rounded-xl bg-middle-color bg-slate-500 px-24 py-3"></p>
+            <p className="inline rounded-xl bg-middle-color bg-slate-500 px-24 py-3 max-lg:px-[50%]"></p>
           </div>
         </div>
       </div>

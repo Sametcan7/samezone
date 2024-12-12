@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import EvaluationScoreStar from "../evaluationScoreStar";
+import AddToCartButton from "./addToCartButton";
 
 export default function Card({ data, filteredData }) {
   const lineClampStyle = {
@@ -13,12 +14,12 @@ export default function Card({ data, filteredData }) {
   const products = filteredData ? filteredData : data;
 
   return (
-    <div className="mx-4 grid w-full auto-rows-max grid-cols-[repeat(4,_minmax(0,_320px))] gap-6">
+    <div className="mx-4 grid w-full auto-rows-max grid-cols-[repeat(2,_minmax(0,_320px))] gap-2 lg:grid-cols-[repeat(3,_minmax(0,_320px))] xl:grid-cols-[repeat(4,_minmax(0,_320px))]">
       {products.map((product) => (
         <div
           key={product.id}
-          className="rounded-lg bg-secondary-color p-2 text-text-color">
-          <div className="mb-2">
+          className="group rounded-lg bg-secondary-color p-2 text-text-color transition-all duration-300 ease-in hover:m-[-2px] hover:border-2 hover:border-white hover:shadow-xl">
+          <div className="relative mb-2">
             <Link href={`/product/${product.id}`}>
               <Image
                 className="aspect-square w-full"
@@ -29,6 +30,9 @@ export default function Card({ data, filteredData }) {
                 alt=""
               />
             </Link>
+            <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100">
+              <AddToCartButton product={product} />
+            </div>
           </div>
           <div>
             <p style={lineClampStyle}>{product.title}</p>

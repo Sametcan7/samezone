@@ -4,9 +4,9 @@ export default function Loading() {
       <div>
         <p className="inline-block rounded-xl bg-slate-500 px-44 py-4"></p>
       </div>
-      <div className="my-8 flex h-auto gap-4">
+      <div className="my-8 flex h-auto gap-4 max-md:flex-col">
         <Category />
-        <div className="mx-4 grid w-full auto-rows-max grid-cols-[repeat(4,_minmax(0,_320px))] gap-6">
+        <div className="mx-4 grid w-full auto-rows-max grid-cols-[repeat(2,_minmax(0,_320px))] gap-2 lg:grid-cols-[repeat(3,_minmax(0,_320px))] xl:grid-cols-[repeat(4,_minmax(0,_320px))]">
           {Array(8)
             .fill(null)
             .map((d, i) => (
@@ -20,8 +20,8 @@ export default function Loading() {
 
 function Category() {
   return (
-    <div className="sticky top-[20px] rounded-lg bg-secondary-color h-fit">
-      <div className="w-[250px] rounded-lg border-2 border-black text-middle-color">
+    <div className="h-fit rounded-lg bg-secondary-color md:sticky md:top-[20px]">
+      <div className="w-full rounded-lg border-2 border-black text-middle-color md:w-[250px]">
         <div className="border-b-2 border-black py-3">
           <div className="my-2">
             <p className="mx-2 rounded-xl bg-slate-500 py-2.5"></p>

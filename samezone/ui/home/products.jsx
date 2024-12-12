@@ -13,7 +13,7 @@ function Products() {
       <h2 className="my-6 text-center text-3xl font-extrabold text-text-color">
         EXPLORE PRODUCTS
       </h2>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 max-lg:flex-col">
         <div className="rounded-xl bg-secondary-color p-4">
           <h3 className="my-2 text-2xl font-bold text-text-color">
             Electronics
@@ -24,7 +24,7 @@ function Products() {
               ? electronics?.slice(0, 2).map((electronic) => (
                   <div
                     key={electronic.id}
-                    className="w-[300px] rounded-xl border-2 border-black bg-middle-color p-2">
+                    className="w-[200px] rounded-xl border-2 border-black bg-middle-color p-2 lg:w-[300px]">
                     <Link href={`product/${electronic.id}`}>
                       <Image
                         className="mx-auto aspect-square w-full rounded-lg border-2 border-black"
@@ -51,7 +51,7 @@ function Products() {
               ? jewelery.slice(0, 2).map((jewel) => (
                   <div
                     key={jewel.id}
-                    className="w-[300px] rounded-xl border-2 border-black bg-middle-color p-2">
+                    className="w-[200px] rounded-xl border-2 border-black bg-middle-color p-2 lg:w-[300px]">
                     <Link href={`product/${jewel.id}`}>
                       <Image
                         className="mx-auto aspect-square w-full rounded-lg border-2 border-black"
