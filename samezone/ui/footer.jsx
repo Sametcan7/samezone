@@ -15,11 +15,11 @@ import { FaGooglePay } from "react-icons/fa6";
 import { FaCcApplePay } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-export default function () {
+export default function Footer() {
   return (
-    <div className="flex gap-8 bg-secondary-color px-20 py-10 text-middle-color">
+    <div className="flex mt-auto gap-8 bg-secondary-color px-20 py-10 text-middle-color">
       <div className="flex w-1/2 flex-col gap-8">
-        <div className="flex flex-wrap  gap-4">
+        <div className="flex flex-wrap gap-4">
           <div>
             <p className="text-lg font-bold text-white">Customer service</p>
             <ul>
@@ -53,7 +53,7 @@ export default function () {
         </div>
         <div>
           <p className="text-lg font-bold text-white">Help</p>
-          <ul className="flex flex-row flex-wrap ">
+          <ul className="flex flex-row flex-wrap">
             <li className="pr-1">Help Center</li>
             <li className="pr-1">Disputes & Reports,</li>
             <li className="pr-1">Buyer Protection,</li>
@@ -66,7 +66,7 @@ export default function () {
         </div>
         <div>
           <p className="text-lg font-bold text-white">Browse by Category</p>
-          <ul className="flex flex-row flex-wrap ">
+          <ul className="flex flex-row flex-wrap">
             <li className="pr-1">All Popular,</li>
             <li className="pr-1">Product,</li>
             <li className="pr-1">Promotion,</li>
@@ -80,8 +80,9 @@ export default function () {
         <div className="flex flex-wrap gap-4">
           <div>
             <p className="text-lg font-bold text-white">Pay with</p>
-            <ul className="flex gap-4 flex-wrap">
-              <IconContext.Provider value={{ size: "3rem", color: "--middle-color" }}>
+            <ul className="flex flex-wrap gap-4">
+              <IconContext.Provider
+                value={{ size: "3rem", color: "--middle-color" }}>
                 <li>
                   <FaCcVisa />
                 </li>
@@ -108,8 +109,9 @@ export default function () {
           </div>
           <div>
             <p className="text-lg font-bold text-white">Stay connected</p>
-            <ul className="flex gap-4 flex-wrap">
-              <IconContext.Provider value={{ size: "3rem", color: "--middle-color" }}>
+            <ul className="flex flex-wrap gap-4">
+              <IconContext.Provider
+                value={{ size: "3rem", color: "--middle-color" }}>
                 <li>
                   <FaFacebook />
                 </li>
@@ -130,8 +132,10 @@ export default function () {
           </div>
         </div>
         <div>
-          <p className="text-lg font-bold text-white">Samezone Multi-Language Sites</p>
-          <ul className="flex flex-row flex-wrap ">
+          <p className="text-lg font-bold text-white">
+            Samezone Multi-Language Sites
+          </p>
+          <ul className="flex flex-row flex-wrap">
             <li className="pr-1">Russian,</li>
             <li className="pr-1">Portuguese,</li>
             <li className="pr-1">Spanish,</li>
@@ -151,7 +155,7 @@ export default function () {
         </div>
         <div>
           <p className="text-lg font-bold text-white">Samezone Group</p>
-          <ul className="flex flex-row flex-wrap ">
+          <ul className="flex flex-row flex-wrap">
             <li className="pr-1">Samezone Group Website,</li>
             <li className="pr-1">SameZoneExpress,</li>
             <li className="pr-1">SameZonemama,</li>

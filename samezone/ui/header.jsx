@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useGetProductsQuery } from "../lib/redux/api/apiSlice";
+import { useAppSelector } from "../lib/redux/hooks";
+import { selectAllCart } from "../lib/redux/features/cart/cartSlice";
 
 const allerta_stencil = Allerta_Stencil({ subsets: ["latin"], weight: "400" });
 
@@ -18,6 +20,8 @@ export default function Header() {
   const { data } = useGetProductsQuery();
   const divRef = useRef();
 
+  const allCart = useAppSelector(selectAllCart);
+  console.log(allCart);
   function HandleClick(e) {
     if (!divRef.current.contains(e.target)) setIsOpen(false);
   }
@@ -123,9 +127,16 @@ export default function Header() {
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-0.5">
-                    <CiShoppingCart />
-                    <p>My Cart</p>
+                  <div className="relative flex items-center gap-0.5">
+                    <Link className="flex items-center" href="/cart">
+                      <CiShoppingCart />
+                      My Cart
+                    </Link>
+                    {allCart.length > 0 && (
+                      <span className="ml-1 flex size-6 items-center justify-center rounded-full bg-middle-color">
+                        {allCart.length}
+                      </span>
+                    )}
                   </div>
                 </div>
               </IconContext.Provider>

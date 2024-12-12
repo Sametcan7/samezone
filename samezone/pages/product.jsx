@@ -2,11 +2,14 @@ import { useParams } from "next/navigation";
 import EvaluationScoreStar from "../ui/evaluationScoreStar";
 import Image from "next/image";
 import { useGetProductQuery } from "../lib/redux/api/apiSlice";
+import { addProduct } from "../lib/redux/features/cart/cartSlice";
+import { useAppDispatch } from "../lib/redux/hooks";
 
 export default function Product() {
   const { id } = useParams();
   const { data: product, isFetching } = useGetProductQuery(id);
-  
+  const dispatch = useAppDispatch();
+
   return (
     <div>
       {isFetching ? (
@@ -40,7 +43,9 @@ export default function Product() {
               </div>
               <p className="mt-4 text-3xl font-extrabold">{product.price} $</p>
 
-              <button className="mt-8 rounded-xl bg-middle-color px-4 py-3 text-3xl font-bold text-text-color">
+              <button
+                onClick={() => dispatch(addProduct(product))}
+                className="mt-8 rounded-xl bg-middle-color px-4 py-3 text-3xl font-bold text-text-color">
                 Add To Cart
               </button>
             </div>
